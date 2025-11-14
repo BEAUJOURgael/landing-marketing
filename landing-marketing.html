@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Boostify – Agence Marketing Digital</title>
+
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --accent: #f97316;
+      --bg: #f9fafb;
+      --text: #0f172a;
+      --muted: #6b7280;
+      --card: #ffffff;
+      --border: #e5e7eb;
+    }
+
+    * { margin:0; padding:0; box-sizing:border-box; }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* NAV */
+    header {
+      background: #ffffffcc;
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-weight: 700;
+      font-size: 1.3rem;
+      color: var(--primary-dark);
+    }
+
+    .nav-menu {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+      font-size: 0.95rem;
+    }
+
+    .nav-menu a {
+      color: var(--muted);
+    }
+    .nav-menu a:hover { color: var(--primary-dark); }
+
+    .nav-cta {
+      padding: 8px 18px;
+      border-radius: 999px;
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+
+    .burger {
+      display: none;
+      border: none;
+      background: none;
+      font-size: 1.8rem;
+      cursor: pointer;
+    }
+
+    /* HERO */
+    .hero {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 60px 20px 40px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.7fr) minmax(0, 1.3fr);
+      gap: 40px;
+      align-items: center;
+    }
+
+    .hero-headline {
+      font-size: clamp(2.2rem, 3vw + 1rem, 2.9rem);
+      margin-bottom: 10px;
+    }
+
+    .hero-sub {
+      color: var(--muted);
+      max-width: 470px;
+      margin-bottom: 18px;
+    }
+
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 18px;
+      font-size: 0.8rem;
+    }
+
+    .hero-badges span {
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      padding: 5px 10px;
+      background: #ffffff;
+      color: var(--muted);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .btn {
+      border-radius: 999px;
+      padding: 10px 22px;
+      border: none;
+      font-size: 0.95rem;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+      font-weight: 600;
+    }
+
+    .btn-secondary {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      color: var(--primary-dark);
+    }
+
+    .hero-meta {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .hero-panel {
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 20px;
+      border: 1px solid var(--border);
+      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
+      font-size: 0.9rem;
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 12px;
+    }
+
+    .hero-stat {
+      background: #eff6ff;
+      border-radius: 12px;
+      padding: 10px;
+      text-align: center;
+    }
+
+    .hero-stat span {
+      display: block;
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+
+    .hero-stat small {
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    /* GENERIC SECTION */
+    .section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 50px 20px;
+    }
+
+    .section h2 {
+      font-size: 1.8rem;
+      margin-bottom: 8px;
+    }
+
+    .section-sub {
+      color: var(--muted);
+      margin-bottom: 26px;
+    }
+
+    /* SERVICES */
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: 16px;
+      padding: 20px;
+      border: 1px solid var(--border);
+      font-size: 0.95rem;
+    }
+
+    .card h3 {
+      margin-bottom: 6px;
+    }
+
+    .card p {
+      color: var(--muted);
+    }
+
+    /* PROCESS */
+    .process {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.3fr);
+      gap: 24px;
+      align-items: flex-start;
+    }
+
+    .process-steps {
+      padding-left: 14px;
+      border-left: 2px solid #e5e7eb;
+    }
+
+    .process-step {
+      margin-bottom: 18px;
+    }
+
+    .process-step h3 {
+      font-size: 1rem;
+      margin-bottom: 4px;
+    }
+
+    .process-step p {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .process-panel {
+      background: var(--card);
+      border-radius: 16px;
+      padding: 18px;
+      border: 1px solid var(--border);
+      font-size: 0.9rem;
+    }
+
+    /* PORTFOLIO */
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .case-card {
+      background: var(--card);
+      border-radius: 16px;
+      padding: 14px;
+      border: 1px solid var(--border);
+      font-size: 0.9rem;
+    }
+
+    .case-thumb {
+      border-radius: 12px;
+      height: 120px;
+      background: linear-gradient(135deg, #f97316, #fb7185);
+      margin-bottom: 8px;
+    }
+
+    .case-card strong {
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .case-meta {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    /* PRICING */
+    .pricing {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .price-card {
+      background: var(--card);
+      border-radius: 18px;
+      padding: 20px;
+      border: 1px solid var(--border);
+      font-size: 0.9rem;
+    }
+
+    .price-card.featured {
+      border-color: var(--primary);
+      box-shadow: 0 20px 50px rgba(37, 99, 235, 0.25);
+    }
+
+    .price-card h3 {
+      margin-bottom: 4px;
+    }
+
+    .price-value {
+      font-size: 1.6rem;
+      margin: 8px 0 10px;
+    }
+
+    .price-card ul {
+      padding-left: 18px;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    /* TESTIMONIALS */
+    .testimonials {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .testimonial {
+      background: var(--card);
+      border-radius: 16px;
+      padding: 18px;
+      border: 1px solid var(--border);
+      font-size: 0.9rem;
+    }
+
+    .testimonial span {
+      display: block;
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
+
+    /* CONTACT */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.2fr);
+      gap: 24px;
+      align-items: flex-start;
+    }
+
+    .form {
+      background: var(--card);
+      border-radius: 18px;
+      padding: 20px;
+      border: 1px solid var(--border);
+      display: grid;
+      gap: 12px;
+      font-size: 0.9rem;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .form label {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .form input,
+    .form textarea {
+      width: 100%;
+      padding: 8px 10px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      font-size: 0.9rem;
+      font-family: inherit;
+    }
+
+    .form textarea {
+      resize: vertical;
+    }
+
+    .contact-info {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .contact-info p {
+      margin-bottom: 8px;
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 18px 10px 26px;
+      color: var(--muted);
+      font-size: 0.8rem;
+      border-top: 1px solid var(--border);
+      margin-top: 30px;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .grid-3,
+      .pricing,
+      .portfolio-grid,
+      .testimonials {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .process,
+      .contact-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero-panel {
+        order: -1;
+      }
+
+      .form-row {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-menu {
+        display: none;
+        position: absolute;
+        right: 20px;
+        top: 55px;
+        flex-direction: column;
+        gap: 10px;
+        background: #ffffff;
+        border-radius: 14px;
+        padding: 10px 14px;
+        border: 1px solid var(--border);
+      }
+
+      .nav-menu.open {
+        display: flex;
+      }
+
+      .nav {
+        position: relative;
+      }
+
+      .burger {
+        display: block;
+      }
+
+      .nav-cta {
+        display: none;
+      }
+    }
+  </style>
+
+  <script>
+    function toggleMenu() {
+      const menu = document.querySelector(".nav-menu");
+      menu.classList.toggle("open");
+    }
+
+    // Smooth scroll
+    document.addEventListener("click", (e) => {
+      const link = e.target.closest('a[href^="#"]');
+      if (!link) return;
+      const id = link.getAttribute("href").slice(1);
+      const target = document.getElementById(id);
+      if (!target) return;
+      e.preventDefault();
+      window.scrollTo({
+        top: target.offsetTop - 70,
+        behavior: "smooth",
+      });
+    });
+  </script>
+</head>
+
+<body>
+
+  <header>
+    <nav class="nav">
+      <div class="logo">Boostify</div>
+      <ul class="nav-menu">
+        <li><a href="#services">Services</a></li>
+        <li><a href="#process">Méthode</a></li>
+        <li><a href="#portfolio">Résultats</a></li>
+        <li><a href="#pricing">Tarifs</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <button class="nav-cta">Parler à un expert</button>
+      <button class="burger" onclick="toggleMenu()">☰</button>
+    </nav>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div>
+        <h1 class="hero-headline">On fait passer ton business au niveau supérieur.</h1>
+        <p class="hero-sub">
+          Acquisition, funnels, pubs Meta & Google, email marketing : on gère tout ton marketing
+          pour que tu puisses te concentrer sur ton activité.
+        </p>
+        <div class="hero-badges">
+          <span>+180 campagnes lancées</span>
+          <span>+2M€ de budget ads géré</span>
+          <span>Spécialiste PME & infopreneurs</span>
+        </div>
+        <div class="hero-actions">
+          <button class="btn btn-primary" onclick="window.location='#contact'">
+            Demander un appel
+          </button>
+          <button class="btn btn-secondary" onclick="window.location='#portfolio'">
+            Voir nos résultats
+          </button>
+        </div>
+        <div class="hero-meta">
+          Réponse sous 24h – sans engagement.
+        </div>
+      </div>
+
+      <aside class="hero-panel">
+        <strong>Audit gratuit de ton marketing</strong>
+        <p>On analyse ton tunnel actuel et on t’envoie un plan d’action simple.</p>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <span>+320%</span>
+            <small>ROAS max sur un client e-commerce</small>
+          </div>
+          <div class="hero-stat">
+            <span>+45%</span>
+            <small>Leads en plus sur 3 mois en B2B</small>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services" class="section">
+      <h2>Nos services</h2>
+      <p class="section-sub">Une équipe complète, pour couvrir chaque étape de ton acquisition.</p>
+
+      <div class="grid-3">
+        <article class="card">
+          <h3>Publicité Meta & Google</h3>
+          <p>Stratégie, création de campagnes, optimisation quotidienne, scaling.</p>
+        </article>
+        <article class="card">
+          <h3>Funnels & landing pages</h3>
+          <p>Pages de vente, tunnels d’acquisition, tests A/B et optimisation des conversions.</p>
+        </article>
+        <article class="card">
+          <h3>Email & automation</h3>
+          <p>Sequences emails, relances, nurturing, scénarios automatisés.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section id="process" class="section">
+      <h2>Notre méthode</h2>
+      <p class="section-sub">Pas de bullshit. Des actions simples, mesurables et efficaces.</p>
+
+      <div class="process">
+        <div class="process-steps">
+          <div class="process-step">
+            <h3>1. Audit & objectif</h3>
+            <p>On analyse tes offres, ton trafic, tes chiffres et on définit un objectif réaliste.</p>
+          </div>
+          <div class="process-step">
+            <h3>2. Plan d’action</h3>
+            <p>Choix des canaux, des budgets, de l’angle de communication et des offres.</p>
+          </div>
+          <div class="process-step">
+            <h3>3. Lancement & optimisation</h3>
+            <p>On lance, on teste, on optimise et on scale ce qui fonctionne.</p>
+          </div>
+        </div>
+
+        <aside class="process-panel">
+          <strong>Transparence & reporting</strong>
+          <p>
+            Tu as accès à un dashboard de suivi simple (trafic, leads, ventes) et un point régulier
+            avec notre équipe.
+          </p>
+        </aside>
+      </div>
+    </section>
+
+    <!-- PORTFOLIO -->
+    <section id="portfolio" class="section">
+      <h2>Quelques résultats</h2>
+      <p class="section-sub">Exemples de cas clients accompagnés.</p>
+
+      <div class="portfolio-grid">
+        <article class="case-card">
+          <div class="case-thumb"></div>
+          <strong>Marque de vêtements</strong>
+          <div class="case-meta">+310% de CA en 6 mois / ROAS x3,2</div>
+        </article>
+        <article class="case-card">
+          <div class="case-thumb"></div>
+          <strong>Coach business</strong>
+          <div class="case-meta">+45 leads qualifiés / mois via un funnel automatisé</div>
+        </article>
+        <article class="case-card">
+          <div class="case-thumb"></div>
+          <strong>Agence B2B</strong>
+          <div class="case-meta">Pipeline de RDV remplis 2 mois à l’avance</div>
+        </article>
+      </div>
+    </section>
+
+    <!-- PRICING -->
+    <section id="pricing" class="section">
+      <h2>Tarifs</h2>
+      <p class="section-sub">Des offres simples, adaptées à ton stade de développement.</p>
+
+      <div class="pricing">
+        <div class="price-card">
+          <h3>Starter</h3>
+          <p class="price-value">690 €/mois</p>
+          <ul>
+            <li>1 canal d’acquisition (Meta ou Google)</li>
+            <li>Gestion des campagnes</li>
+            <li>Reporting mensuel</li>
+          </ul>
+        </div>
+        <div class="price-card featured">
+          <h3>Growth</h3>
+          <p class="price-value">1 490 €/mois</p>
+          <ul>
+            <li>2 canaux d’acquisition</li>
+            <li>Funnels & landing pages</li>
+            <li>Reporting hebdomadaire</li>
+          </ul>
+        </div>
+        <div class="price-card">
+          <h3>Custom</h3>
+          <p class="price-value">Sur devis</p>
+          <ul>
+            <li>Stratégie globale</li>
+            <li>Équipe dédiée</li>
+            <li>Accompagnement sur-mesure</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="section">
+      <h2>Ce que disent nos clients</h2>
+
+      <div class="testimonials">
+        <article class="testimonial">
+          <p>“On a enfin un système qui génère des leads chaque jour sans tout faire à la main.”</p>
+          <span>— Sarah, coach business</span>
+        </article>
+        <article class="testimonial">
+          <p>“Ils nous ont aidés à structurer notre acquisition et à scaler ce qui marchait déjà.”</p>
+          <span>— Julien, fondateur e-commerce</span>
+        </article>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section">
+      <h2>Parlons de ton projet</h2>
+      <p class="section-sub">Remplis le formulaire, on te répond sous 24h.</p>
+
+      <div class="contact-grid">
+        <form class="form">
+          <div class="form-row">
+            <div>
+              <label>Nom / Prénom</label>
+              <input type="text" placeholder="Ton nom" required>
+            </div>
+            <div>
+              <label>Email</label>
+              <input type="email" placeholder="ton@email.com" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div>
+              <label>Entreprise</label>
+              <input type="text" placeholder="Nom de l’entreprise">
+            </div>
+            <div>
+              <label>Budget mensuel</label>
+              <input type="text" placeholder="Ex : 1000 €/mois">
+            </div>
+          </div>
+          <div>
+            <label>Ton besoin</label>
+            <textarea rows="4" placeholder="Explique ton projet, ton activité, tes objectifs"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Envoyer ma demande</button>
+        </form>
+
+        <aside class="contact-info">
+          <p><strong>Email :</strong> contact@boostify-agence.com</p>
+          <p><strong>Basée à :</strong> Paris, France (clients partout en francophonie)</p>
+          <p>On travaille avec des e-commerces, des infopreneurs, des agences et des indépendants.</p>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © 2025 Boostify – Exemple de landing page pour agence marketing.
+  </footer>
+
+</body>
+</html>
